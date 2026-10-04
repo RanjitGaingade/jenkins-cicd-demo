@@ -44,9 +44,9 @@ pipeline {
             steps {
                 sh '''
                     for i in $(seq 1 10); do
-                      if curl -fsS http://localhost:${APP_PORT}; then
+                    if curl -fsS http://host.docker.internal:${APP_PORT}; then              
                         exit 0
-                      fi
+                    fi
                       sleep 2
                     done
 
