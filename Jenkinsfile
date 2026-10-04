@@ -21,13 +21,12 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh 'node --check app/app.js'
-                sh 'docker image inspect ${IMAGE_NAME}:${BUILD_NUMBER}'
-            }
-        }
-
+       stage('Test') {
+           steps {
+               sh 'docker run --rm ${IMAGE_NAME}:${BUILD_NUMBER} node --check app.js'
+               sh 'docker image inspect ${IMAGE_NAME}:${BUILD_NUMBER}'
+    }
+}
         stage('Deploy') {
             steps {
                 sh '''
